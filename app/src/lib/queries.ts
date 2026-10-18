@@ -442,14 +442,69 @@ function readStats(): Stats {
       const j = JSON.parse(fs.readFileSync(path.join(path.dirname(p), "stats.json"), "utf8"));
       if (j && typeof j === "object") return j as Stats;
     } catch {
-      /* fall through to the SQL counts */
+      /* no stats.json beside the catalogue — count everything from the database instead */
     }
   }
-  const players = num(one<{ n: number }>("SELECT COUNT(*) AS n FROM players")?.n) ?? 0;
-  const teams = num(one<{ n: number }>("SELECT COUNT(*) AS n FROM teams")?.n) ?? 0;
-  const countries = num(one<{ n: number }>("SELECT COUNT(*) AS n FROM countries")?.n) ?? 0;
-  const stints = num(one<{ n: number }>("SELECT COUNT(*) AS n FROM stints")?.n) ?? 0;
-  return { players, teams, countries, stints };
+  return countStats();
+}
+
+/**
+ * Every headline number, in a single pass over `players`. The catalogue ships as a bare
+ * .sqlite file, so stats.json (written by the harvest) is easily left behind; deriving the
+ * counts here keeps a missing file from quietly publishing zeroes — which is exactly how
+ * "0 with a photo" went live while the cards were showing photographs.
+ */
+function countStats(): Stats {
+  const r =
+    one<Record<string, number>>(
+      `SELECT COUNT(*) AS players,
+              SUM(grp = 'gk') AS gk, SUM(grp = 'def') AS def,
+              SUM(grp = 'mid') AS mid, SUM(grp = 'fwd') AS fwd,
+              SUM(grp NOT IN ('gk', 'def', 'mid', 'fwd')) AS noPosition,
+              SUM(img IS NOT NULL) AS withPhoto,
+              SUM(wiki IS NOT NULL) AS withWiki,
+              SUM(country_q IS NOT NULL) AS withCountry,
+              SUM(dob IS NOT NULL) AS withDob,
+              SUM(height_cm IS NOT NULL) AS withHeight,
+              SUM(weight_kg IS NOT NULL) AS withMass,
+              SUM(cur_team IS NOT NULL) AS withTeam,
+              SUM(pos IS NOT NULL) AS withPosition,
+              SUM(lower(gender) IN ('f', 'female')) AS women,
+              SUM(lower(gender) IN ('m', 'male')) AS men
+       FROM players`,
+    ) ?? {};
+  const n = (k: string) => num(r[k]) ?? 0;
+  const tableCount = (sql: string) => {
+    try {
+      return num(one<{ n: number }>(sql)?.n) ?? 0;
+    } catch {
+      return 0; /* a table this catalogue does not have */
+    }
+  };
+  return {
+    players: n("players"),
+    teams: tableCount("SELECT COUNT(*) AS n FROM teams"),
+    clubs: tableCount("SELECT COUNT(*) AS n FROM teams WHERE kind = 'club'"),
+    nationalTeams: tableCount("SELECT COUNT(*) AS n FROM teams WHERE kind = 'national'"),
+    countries: tableCount("SELECT COUNT(*) AS n FROM countries"),
+    positions: tableCount("SELECT COUNT(*) AS n FROM positions"),
+    stints: tableCount("SELECT COUNT(*) AS n FROM stints"),
+    women: n("women"),
+    men: n("men"),
+    gk: n("gk"),
+    def: n("def"),
+    mid: n("mid"),
+    fwd: n("fwd"),
+    noPosition: n("noPosition"),
+    withTeam: n("withTeam"),
+    withPosition: n("withPosition"),
+    withPhoto: n("withPhoto"),
+    withCountry: n("withCountry"),
+    withDob: n("withDob"),
+    withHeight: n("withHeight"),
+    withMass: n("withMass"),
+    withWiki: n("withWiki"),
+  };
 }
 
 export function getFacets(): Facets {
