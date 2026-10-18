@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import Link from "next/link";
 import { Logo } from "@/components/Ball";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -33,10 +34,18 @@ const NAV = [
   { href: "/about", label: "About" },
 ];
 
+/**
+ * Runs before the rest of the body is parsed, so the theme class is on <html> before first
+ * paint. Light is the default even when the OS prefers dark; "system" is only honoured once
+ * the reader has chosen it.
+ */
+const THEME_INIT = `(function(){try{var m=localStorage.getItem("footballdex-theme");if(m!=="light"&&m!=="dark"&&m!=="system")m="light";var d=m==="dark"||(m==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches);var r=document.documentElement;r.classList.toggle("dark",d);r.style.colorScheme=d?"dark":"light";}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${bebas.variable}`}>
+    <html lang="en" className={`${inter.variable} ${bebas.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-pitch-950">
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <header className="sticky top-0 z-30 border-b border-line/70 bg-pitch-950/85 backdrop-blur">
           {/* The nav is wider than a 390 px phone, so the row is allowed to wrap: the logo
               keeps the first line and the links drop onto a second one. */}
@@ -53,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
+            <ThemeToggle />
           </div>
         </header>
 

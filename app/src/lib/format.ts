@@ -46,7 +46,7 @@ export const GROUPS: Record<Group, GroupMeta> = {
   unknown: {
     label: "Position unrecorded",
     short: "—",
-    chip: "bg-white/5 text-muted border-line",
+    chip: "bg-pitch-800 text-muted border-line",
     bar: "bg-pitch-600",
     dot: "bg-pitch-600",
     text: "text-muted",
