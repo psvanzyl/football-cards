@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pitch-950: #04100a;
+  --color-pitch-900: #07170f;
+  --color-pitch-850: #0b2117;
+  --color-pitch-800: #0f2a1d;
+  --color-pitch-700: #163a27;
+  --color-pitch-600: #1f5036;
+  --color-line: #245239;
+  --color-fg: #eaf6ee;
+  --color-muted: #8ba899;
+  --color-turf: #3ddc84;
+  --color-turf-dark: #1c9c5c;
+  --color-leather: #e0a33e;
+  --color-flash: #ffd24a;
+  /* position groups */
+  --color-gk: #f5b93b;
+  --color-def: #5ab0f2;
+  --color-mid: #3ddc84;
+  --color-fwd: #ff6a4d;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-bebas), "Arial Narrow", ui-sans-serif, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-pitch-950);
+  color: var(--color-fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: #1f5036 #07170f;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07170f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f5036;
+  border-radius: 999px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Mown-stripe pitch texture, faded at the edges. */
+.pitch-lines {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(61, 220, 132, 0.06) 0px,
+    rgba(61, 220, 132, 0.06) 42px,
+    transparent 42px,
+    transparent 84px
+  );
+}
+
+.pitch-glow {
+  background:
+    radial-gradient(60% 55% at 15% 0%, rgba(61, 220, 132, 0.16), transparent 70%),
+    radial-gradient(45% 45% at 92% 8%, rgba(90, 176, 242, 0.12), transparent 70%);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.35s ease both;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-turf);
+}
+
+input[type="range"] {
+  accent-color: var(--color-turf);
+}
+
+.card-shadow {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 10px 24px -14px rgba(0, 0, 0, 0.9);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The catalogue is generated from Wikidata (CC0). Crawl politely.
+Crawl-delay: 1

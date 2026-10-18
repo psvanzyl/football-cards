@@ -1,0 +1,11 @@
+# data (catalogue.sqlite is 220 MB and data/raw is the query cache) — shipped via the container volume
+data/
+__pycache__/
+*.pyc
+*.log
+
+# app build artefacts
+app/node_modules/
+app/.next/
+app/next-env.d.ts
+app/.env*.local

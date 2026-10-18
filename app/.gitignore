@@ -1,0 +1,9 @@
+node_modules
+.next
+next-env.d.ts
+tsconfig.tsbuildinfo
+*.log
+
+# The harvested catalogue is data, not source: ~220 MB of SQLite plus the raw
+# SPARQL caches. Rebuild it with scripts/harvest.py instead of committing it.
+data/
