@@ -49,9 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="sticky top-0 z-30 border-b border-line/70 bg-pitch-950/85 backdrop-blur">
           {/* The nav is wider than a 390 px phone, so the row is allowed to wrap: the logo
               keeps the first line and the links drop onto a second one. */}
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3">
+          <div className="mx-auto flex h-14 w-full max-w-[1600px] items-center gap-3 px-3 sm:px-5">
             <Logo />
-            <nav className="ml-auto flex items-center gap-0.5 text-[12px] sm:gap-1 sm:text-[13px]">
+            <nav className="ml-auto flex min-w-0 items-center gap-0.5 overflow-x-auto text-[12px] [scrollbar-width:none] sm:gap-1 sm:text-[13px]">
               {NAV.map((n) => (
                 <Link
                   key={n.href}
