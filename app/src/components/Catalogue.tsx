@@ -315,7 +315,7 @@ export function Catalogue({ initial, facets, initialFilters, initialSort, refYea
           </div>
         ) : (
           <div
-            className={`mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 ${
+            className={`mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 ${
               loading ? "opacity-60" : ""
             }`}
           >

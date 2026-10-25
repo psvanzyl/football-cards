@@ -39,7 +39,7 @@ export function CardTile({
     <Link
       href={`/player/${p.id}`}
       title={p.name}
-      className="rise card-shadow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-pitch-900 transition duration-200 hover:-translate-y-0.5 hover:border-turf/50 hover:bg-pitch-850 focus-visible:outline focus-visible:outline-2 focus-visible:outline-turf"
+      className="rise card-shadow group relative flex flex-col overflow-hidden rounded-xl border border-line bg-panel shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-turf/50 hover:bg-pitch-850 focus-visible:outline focus-visible:outline-2 focus-visible:outline-turf"
       style={{ animationDelay: `${Math.min(index, 24) * 16}ms` }}
     >
       <span className={`h-1 w-full ${m.bar}`} />
