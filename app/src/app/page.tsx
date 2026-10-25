@@ -29,16 +29,15 @@ function Quick({ href, children }: { href: string; children: React.ReactNode }) 
 
 function Hero({ stats, topCountries, topPositions }: { stats: Stats; topCountries: string[]; topPositions: string[] }) {
   return (
-    <section className="pitch-glow relative mb-6 overflow-hidden rounded-3xl border border-line bg-pitch-900/60 px-5 py-8 sm:px-8 sm:py-10">
-      <div className="pitch-lines pointer-events-none absolute inset-0 opacity-60" />
-      <div className="relative">
-        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-turf">Association football · worldwide</p>
-        <h1 className="font-display text-4xl uppercase leading-[0.95] text-fg sm:text-6xl">
+    <section className="border-b border-line/70 bg-gradient-to-b from-surface to-canvas">
+            <div className="relative mx-auto w-full max-w-[1600px] px-3 py-4 sm:px-5 sm:py-5">
+        <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted">Association football · worldwide</p>
+        <h1 className="text-[22px] font-semibold tracking-tight sm:text-[26px]">
           Every footballer
           <br />
           <span className="text-turf">in the world.</span>
         </h1>
-        <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-muted">
+        <p className="mt-1 max-w-3xl text-[13px] leading-relaxed text-muted">
           A card catalogue of every association football player Wikidata knows about — clubs, national teams,
           positions, birth years, heights and career records. Search it, filter it, sort it. No account, no
           tracking, no paywall.

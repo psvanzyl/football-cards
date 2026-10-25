@@ -90,7 +90,7 @@ export default async function TeamsPage({
 
   return (
     <div className="rise">
-      <header className="pitch-glow mb-5 rounded-3xl border border-line bg-pitch-900/60 px-5 py-7 sm:px-7">
+      <header className="border-b border-line/70 bg-gradient-to-b from-surface to-canvas px-3 py-4 sm:px-5 sm:py-5">
         <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-turf">Clubs &amp; countries</p>
         <h1 className="font-display text-4xl uppercase leading-none sm:text-5xl">Teams</h1>
         <p className="mt-2.5 max-w-2xl text-[13px] leading-relaxed text-muted">
