@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               keeps the first line and the links drop onto a second one. */}
           <div className="mx-auto flex h-14 w-full max-w-[1600px] items-center gap-3 px-3 sm:px-5">
             <Logo />
-            <nav className="ml-auto flex min-w-0 items-center gap-0.5 overflow-x-auto text-[12px] [scrollbar-width:none] sm:gap-1 sm:text-[13px]">
+            <nav className="ml-auto hidden min-w-0 items-center gap-0.5 text-[12px] sm:flex sm:gap-1 sm:text-[13px]">
               {NAV.map((n) => (
                 <Link
                   key={n.href}
@@ -82,7 +82,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </a>{" "}
               (CC0) via the QLever SPARQL endpoint. Rebuilt from source on demand.
             </p>
-            <p className="flex items-center gap-3">
+            <p className="flex flex-wrap items-center gap-3">
+              {/* The header nav is hidden on a phone, so the routes live here. */}
+              <Link href="/" className="hover:text-fg">
+                Players
+              </Link>
+              <Link href="/teams" className="hover:text-fg">
+                Teams
+              </Link>
+              <Link href="/countries" className="hover:text-fg">
+                Countries
+              </Link>
               <Link href="/about" className="hover:text-fg">
                 Method &amp; limits
               </Link>
