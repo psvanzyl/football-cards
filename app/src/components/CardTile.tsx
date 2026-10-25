@@ -53,7 +53,7 @@ export function CardTile({
         </span>
       </div>
 
-      <div className="relative mt-2 aspect-[5/4] w-full overflow-hidden bg-gradient-to-br from-pitch-800 to-pitch-950">
+      <div className="relative mt-2 aspect-[4/5] w-full overflow-hidden bg-gradient-to-br from-pitch-800 to-pitch-950">
         {/* The monogram is drawn first and the photograph sits on top of it: it covers the
             card while a photo is still loading, and it is the whole picture for the ~83%
             of players Wikidata has no photograph for. */}

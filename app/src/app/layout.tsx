@@ -66,10 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
 
-        <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
+        <main className="mx-auto w-full max-w-[1600px] px-3 py-6 sm:px-5">{children}</main>
 
         <footer className="mt-12 border-t border-line/70 bg-pitch-900/40">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-[12px] text-muted sm:flex-row sm:items-center sm:justify-between">
+          <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-3 px-3 py-8 text-[12px] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-5">
             <p>
               Data from{" "}
               <a
