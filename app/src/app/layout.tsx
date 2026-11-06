@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://football.laserraptorai.duckdns.org"),
+  metadataBase: new URL("https://football.dex.laserraptor.eu"),
   title: {
     default: "Footballdex — every footballer in the world, searchable",
     template: "%s · Footballdex",
